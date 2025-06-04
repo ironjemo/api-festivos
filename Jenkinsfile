@@ -1,7 +1,7 @@
 pipeline{
 
      agent any  // ← ESTA LÍNEA ES OBLIGATORIA
-     
+
     environment{
         REPO_URL='https://github.com/ironjemo/api-festivos'
         BRANCH = 'main'
@@ -15,14 +15,14 @@ pipeline{
             }
         }
 
-            stage('Construir la imagen de docker'){
-                steps{
-                    script{
-                        bat 'docker build -t %DOCKER_IMAGE%'
-                    }
-                    
-                }
-            }
+          stage('Construir la imagen de Docker') {
+            steps {
+                 script {
+                      bat "docker build -t ${DOCKER_IMAGE} ."
+        }
+    }
+}
+
 
             stage('Crear contenedor'){
                 steps{
