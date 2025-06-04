@@ -39,7 +39,9 @@ function obtenerFestivosPascua(año) {
     const viernesSanto = agregarDias(domingoRamos, 5);
     const domingoPascua = agregarDias(domingoRamos, 7);
     const ascencion = siguienteLunes(agregarDias(domingoPascua, 40));
+ 
     const corpusChristi = siguienteLunes(agregarDias(domingoPascua, 61));
+    const SantosReyes = siguienteLunes(new Date(año, 0, 6));
     const sanJose = siguienteLunes(new Date(año, 2, 19));
 
     return {
@@ -49,7 +51,9 @@ function obtenerFestivosPascua(año) {
         "Domingo de Pascua": domingoPascua,
         "Ascencion del señor":ascencion,
         "Corpus Christi": corpusChristi,
-        "San José": sanJose
+        "Santos Reyes" : SantosReyes,
+        "San José": sanJose,
+       
     };
 }
 

@@ -1,12 +1,21 @@
 const express = require("express");
-const app = express();//Instancia de la aplicacion,asigna el objeto express
-const bd = require("./repositorios/bd");
+const app = express();
+const conexion = require("./conexion");
 
-bd.conectar().catch(error => console.error("Error conectando a la BD:", error));
+// Middleware para recibir JSON
+app.use(express.json());
 
-require("./rutas/festivo.rutas")(app);
+// Conexión a la base de datos y arranque del servidor
+conexion.conectar().then(() => {
+    console.log("✅ Base de datos conectada correctamente");
 
-const puerto = 3030;
-app.listen(puerto, () => {
-    console.log(`✅ API Festivos ejecutándose en http://localhost:${puerto}`);//Arranca el loop infinito
+    // Rutas
+    app.use("/api/calendario", require("./rutas/calendario.rutas"));
+
+    // Inicio del servidor en puerto 3030
+    app.listen(3030, () => {
+        console.log("🚀 Servidor escuchando en el puerto 3030");
+    });
+}).catch((err) => {
+    console.error("❌ Error al conectar a la base de datos:", err);
 });
