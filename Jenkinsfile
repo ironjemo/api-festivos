@@ -22,7 +22,21 @@ pipeline{
         }
     }
 }
-
+// agregar steps detener...
+            stage('Detener contendor existente'){
+                steps{
+                    script{
+                        catchError (buildResult: 'SUCCESS' , stageResult: 'UNSTABLE'){
+                            bat """
+                            docker container inspect pipelineapinewcalendario > nul 2>&1 && (
+                                docker container stop pipelineapinewcalendario 
+                                docker container rm pipelineapinewcalendario 
+                            ) || echo "No existe el contenedor 'pipelineapinewcalendario'"
+                            """
+                        }
+                    }
+                }
+            }
 
             stage('Crear contenedor'){
                 steps{
