@@ -8,7 +8,7 @@ pipeline{
     stages{
         stage('Clonar el repositorio'){
             steps{
-                git branch:"${BRANCH}", credentials:"23", url:"${REPO_URL}"
+                git branch:"${BRANCH}", credentialsId:'23', url:"${REPO_URL}"
             }
         }
 
