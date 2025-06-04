@@ -1,4 +1,7 @@
 pipeline{
+
+     agent any  // ← ESTA LÍNEA ES OBLIGATORIA
+     
     environment{
         REPO_URL='https://github.com/ironjemo/api-festivos'
         BRANCH = 'main'
